@@ -80,22 +80,20 @@ class _EchartsState extends State<Echarts> {
       gestureRecognizers: Set()
       ..add(Factory<VerticalDragGestureRecognizer>(() {
             return VerticalDragGestureRecognizer()
-              ..onStart = (DragStartDetails details) {
-                print("darg start");
-              }
-              ..onUpdate = (DragUpdateDetails details) {
-                print("Drag update: $details");
-              }
-              ..onDown = (DragDownDetails details) {
-                print("Drag down: $details");
-              }
-              ..onCancel = () {
-                print("Drag cacel");
-              }
-              ..onEnd = (DragEndDetails details) {
-                print("Drag end");
-              };
-          })),
+              ..onStart = (DragStartDetails details) {}
+              ..onUpdate = (DragUpdateDetails details) {}
+              ..onDown = (DragDownDetails details) {}
+              ..onCancel = () {}
+              ..onEnd = (DragEndDetails details) {};
+      }))
+      ..add(Factory<HorizontalDragGestureRecognizer>(() {
+        return HorizontalDragGestureRecognizer()
+              ..onStart = (DragStartDetails details) {}
+              ..onUpdate = (DragUpdateDetails details) {}
+              ..onDown = (DragDownDetails details) {}
+              ..onCancel = () {}
+              ..onEnd = (DragEndDetails details) {};
+      })),
       javascriptMode: JavascriptMode.unrestricted,
       onWebViewCreated: (WebViewController webViewController) {
         _controller = webViewController;
