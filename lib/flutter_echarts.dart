@@ -78,9 +78,24 @@ class _EchartsState extends State<Echarts> {
     return WebView(
       initialUrl: htmlUtf8,
       gestureRecognizers: Set()
-      ..add(Factory<VerticalDragGestureRecognizer>(
-                () => VerticalDragGestureRecognizer()..onUpdate = (_) {},
-              )),
+      ..add(Factory<VerticalDragGestureRecognizer>(() {
+            return VerticalDragGestureRecognizer()
+              ..onStart = (DragStartDetails details) {
+                print("darg start");
+              }
+              ..onUpdate = (DragUpdateDetails details) {
+                print("Drag update: $details");
+              }
+              ..onDown = (DragDownDetails details) {
+                print("Drag down: $details");
+              }
+              ..onCancel = () {
+                print("Drag cacel");
+              }
+              ..onEnd = (DragEndDetails details) {
+                print("Drag end");
+              };
+          })),
       javascriptMode: JavascriptMode.unrestricted,
       onWebViewCreated: (WebViewController webViewController) {
         _controller = webViewController;
