@@ -2,6 +2,8 @@ library flutter_echarts;
 
 import 'package:flutter/widgets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/foundation.dart';
 
 import './echarts_script.dart' show echartsScript;
 
@@ -75,6 +77,10 @@ class _EchartsState extends State<Echarts> {
   Widget build(BuildContext context) {
     return WebView(
       initialUrl: htmlUtf8,
+      gestureRecognizers: Set()
+      ..add(Factory<VerticalDragGestureRecognizer>(
+                () => VerticalDragGestureRecognizer()..onUpdate = (_) {},
+              )),
       javascriptMode: JavascriptMode.unrestricted,
       onWebViewCreated: (WebViewController webViewController) {
         _controller = webViewController;
